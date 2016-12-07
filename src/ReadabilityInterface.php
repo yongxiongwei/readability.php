@@ -4,7 +4,7 @@ namespace andreskrey\Readability;
 
 use League\HTMLToMarkdown\ElementInterface;
 
-interface ReadabilityInterface extends ElementInterface
+interface ReadabilityInterface
 {
     /**
      * @param string $value
@@ -84,9 +84,4 @@ interface ReadabilityInterface extends ElementInterface
      * @return bool
      */
     public function compareNodes($node1, $node2);
-
-    /**
-     * @param Readability $newNode
-     */
-    public function replaceChild(Readability $newNode);
 }

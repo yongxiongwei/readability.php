@@ -104,6 +104,8 @@ class HTMLParser
 
         $this->dom = new DOMDocument('1.0', 'utf-8');
 
+        $this->dom->registerNodeClass('DOMElement', 'andreskrey\Readability\Readability');
+
         // To avoid having a gazillion of errors on malformed HTMLs
         libxml_use_internal_errors(true);
     }
@@ -130,9 +132,7 @@ class HTMLParser
             return false;
         }
 
-        $root = new Readability($root->firstChild);
-
-        $elementsToScore = $this->getNodes($root);
+        $elementsToScore = $this->getNodes($this->dom->getElementsByTagName('body')->item(0));
 
         $result = $this->rateNodes($elementsToScore);
 
@@ -270,7 +270,7 @@ class HTMLParser
      *
      * @param $node Readability
      */
-    private function getNodes(Readability $node)
+    private function getNodes($node)
     {
         $stripUnlikelyCandidates = $this->getConfig()->getOption('stripUnlikelyCandidates');
 
