@@ -439,4 +439,19 @@ class Readability extends \DOMElement implements ReadabilityInterface
     {
         return $this->nodeName;
     }
+
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    public function getAttribute($name)
+    {
+        if ($this instanceof \DOMElement) {
+            return parent::getAttribute($name);
+        }
+
+        return '';
+    }
 }

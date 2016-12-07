@@ -132,7 +132,7 @@ class HTMLParser
             return false;
         }
 
-        $elementsToScore = $this->getNodes($this->dom->getElementsByTagName('body')->item(0));
+        $elementsToScore = $this->getNodes($root->firstChild);
 
         $result = $this->rateNodes($elementsToScore);
 
